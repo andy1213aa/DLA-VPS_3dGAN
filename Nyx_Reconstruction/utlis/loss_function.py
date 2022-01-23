@@ -1,7 +1,7 @@
 import tensorflow as tf
 
 
-def generator_loss(gfake_logit, type):
+def generator_loss(gfake_logit):
   
     # if type == 'WGAN' or 'hinge':
     g_loss = -tf.reduce_mean(gfake_logit)
@@ -12,7 +12,7 @@ def generator_loss(gfake_logit, type):
     
     return  g_loss
 
-def discriminator_loss(real_logit, fake_logit, type):
+def discriminator_loss(real_logit, fake_logit):
     # if type == 'WGAN':
     real_loss = -tf.reduce_mean(real_logit)
     fake_loss = tf.reduce_mean(fake_logit)

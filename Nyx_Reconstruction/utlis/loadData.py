@@ -5,7 +5,7 @@ import tensorflow as tf
 from shutil import copyfile
 def generateData(dataSetConfig):
     
-    dataType = {'float': [4, tf.float32]}
+    
     
     def _parse_function(example_proto):
         features = tf.io.parse_single_example(
@@ -55,9 +55,9 @@ def generateData(dataSetConfig):
             maxi = 63409750000000.0
             mini = -80423330000000.0
 
-        elif dataSetConfig['variable'] == 'particle_mass_density':
-            maxi = 1657542300000.0
-            mini = 0.0
+        elif dataSetConfig['variable'] == 'phi_grav':
+            maxi = 1695419.0
+            mini = -409077.1
 
 
         data = (data - mini) / (maxi-mini)

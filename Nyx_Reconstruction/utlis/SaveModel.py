@@ -62,7 +62,7 @@ class SaveModel(tf.keras.callbacks.Callback):
     """
         with open( self.dataSetConfig['logDir']+'config.txt', 'w') as f:
             f.write(saveLogTxt) 
-    def on_epoch_end(self, monitor_value, logs = None):
+    def on_epoch_end(self, monitor_value = 0, logs = None):
         # read monitor value from logs
         # monitor_value = logs.get(self.monitor)
         # Create the saving rule

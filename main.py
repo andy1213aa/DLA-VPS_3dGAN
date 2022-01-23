@@ -7,7 +7,6 @@ from Nyx_Reconstruction.utlis.SaveModel import SaveModel
 from Nyx_Reconstruction.model.generator import generator
 from Nyx_Reconstruction.model.discriminator import discriminator
 from Nyx_Reconstruction.utlis.loss_function import generator_loss, discriminator_loss
-import os
 import numpy as np
 
 def main():
@@ -19,7 +18,7 @@ def main():
             fake_data_by_random_parameter = gen(real_data[0] ,training = True)  #generate by random parameter
 
             gFake_logit = dis([real_data[0], fake_data_by_random_parameter],training = True)
-            gFake_loss = 1e-3*generator_loss(gFake_logit, type='origin')
+            gFake_loss = generator_loss(gFake_logit)
             disparate = 5e-1*tf.reduce_mean(tf.math.sqrt(tf.reduce_sum(tf.math.abs(fake_data_by_random_parameter-real_data[1])**2, axis=[1, 2, 3, 4])))
             gLoss = gFake_loss + disparate
         gradients = tape.gradient(gLoss, gen.trainable_variables)
@@ -34,12 +33,12 @@ def main():
             fake_data = gen(real_data[0],training = True)
             real_logit = dis([real_data[0], real_data[1]] ,training = True)
             fake_logit = dis([real_data[0], fake_data],training = True)
-            real_loss, fake_loss = discriminator_loss(real_logit, fake_logit, type='origin')
-            dLoss = 1e-3*(fake_loss + real_loss)
+            real_loss, fake_loss = discriminator_loss(real_logit, fake_logit)
+            dLoss = (fake_loss + real_loss)
 
         D_grad = t.gradient(dLoss, dis.trainable_variables)
         disOptimizer.apply_gradients(zip(D_grad, dis.trainable_variables))
-        return 1e-3*real_loss ,  1e-3*fake_loss,  real_logit,fake_logit
+        return real_loss ,  fake_loss,  real_logit,fake_logit
     
     
     
@@ -57,17 +56,16 @@ def main():
     training_batch = generateData(dataSetConfig)
     
     summary_writer = tf.summary.create_file_writer(dataSetConfig['logDir'])
-    saveModel = SaveModel(gen, dis, dataSetConfig, mode = 'min', save_weights_only=False)   #Build a training rule
-    predictDir = dataSetConfig['logDir']+'predictData'
-    rawDir = dataSetConfig['logDir']+'rawData'
-    os.mkdir(predictDir)
-    os.mkdir(rawDir)
+    # No use 'min' to decide end the training or not
+    # Instead directly use epoch
+    saveModel = SaveModel(gen, dis, dataSetConfig, mode = 'min', save_weights_only=dataSetConfig['save_weights_only'])   #Build a training rule
+  
 
-    while saveModel.training and saveModel.epoch < 1500:  
+    while saveModel.training and saveModel.epoch < dataSetConfig['epochs']:  
        # Average_percentage = 0
         for step, real_data in enumerate(training_batch):
-            # real_data 中 real_data[0] represent three input parameters, i.e. real_data[0][0] real_data[0][1] and real_data[0][2]. 
-            # real_data[1] represent raw data.
+            # real_data 中 real_data[0] represents three input parameters, i.e. real_data[0][0] real_data[0][1] and real_data[0][2]. 
+            # real_data[1] represents raw data.
         
             dRealLoss, dFakeLoss, dReal_logit,dFake_logit= train_discriminator(real_data)
             with summary_writer.as_default():
@@ -84,8 +82,9 @@ def main():
         print(f'Epoch: {saveModel.epoch:6} Batch: {step:3} Disparate:{gDisparate:4.5} G_loss: {gLoss:4.5} D_real_loss: {dRealLoss:4.5} D_fake_loss: {dFakeLoss:4.5}')        
             
 
-        saveModel.on_epoch_end(0)
-        if saveModel.epoch%10 == 0:
+        saveModel.on_epoch_end()
+        # Save the model for given epoch.
+        if saveModel.epoch%dataSetConfig['save_epochs'] == 0:
             saveModel.save_model()
             
 if __name__ == "__main__":
