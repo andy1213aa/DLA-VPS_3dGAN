@@ -1,4 +1,4 @@
-# DLA-VPS: Deep Learning Assisted Visual Parameter Space Analysis of Large Scale Cosmological Simulations
+# DLA-VPS (3D GAN based model)
 
 ## Introuction
 
