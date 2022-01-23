@@ -2,7 +2,7 @@
 
 ## Introuction
 
-The 3D GAN model which reconstruct the Nyx simulation data from simulation parameter space.
+The 3D GAN model which reconstruct Nyx simulation data from the simulation parameter space.
 
 ## Prerequisites
 * Anaconda 4.10.1
@@ -23,7 +23,7 @@ The 3D GAN model which reconstruct the Nyx simulation data from simulation param
 * We save the simulation data as [TFRecord](https://www.tensorflow.org/tutorials/load_data/tfrecord) formate. Please contact us if you need it. 
 ### Training
 
-* Step1: Modify the `Nyx_Reconstruction/config/utlis/config.py` of the training. The setting that most need to be changed are as follows:  
+* Step1: Modify the `Nyx_Reconstruction/config/utlis/config.py` of the training. The settings that are most needed to be changed are as follows:  
   * variable  : the quantity choosing. (density, temp, rho_e, phi_grav, xmom. ymom and zmom)
   * dataSetDir: the directory of the tfRecords
   * logDir    : the directory to save the trained models (generator and discriminator)
@@ -36,12 +36,13 @@ The 3D GAN model which reconstruct the Nyx simulation data from simulation param
 * Step3: Buy a coffee and have patience!
 
 ### Architecture
-The architecture of our models:
 
-* Generator:
-  ![generator](https://user-images.githubusercontent.com/59753286/150675090-f6e2ac97-0860-4357-bba6-addba81955d7.png)
-* Discriminator ![discriminator](https://user-images.githubusercontent.com/59753286/150675104-713c5835-e5e0-4203-8a3a-94a68f5904d7.png)
-* Ressidual block: ![residual_block](https://user-images.githubusercontent.com/59753286/150675117-8bea2bdb-5bd0-47bb-b77a-2249d1001b40.jpg)
+#### Generator
+![generator](https://user-images.githubusercontent.com/59753286/150675090-f6e2ac97-0860-4357-bba6-addba81955d7.png)
+#### Discriminator 
+![discriminator](https://user-images.githubusercontent.com/59753286/150675104-713c5835-e5e0-4203-8a3a-94a68f5904d7.png)
+#### Ressidual block
+![residual_block](https://user-images.githubusercontent.com/59753286/150675117-8bea2bdb-5bd0-47bb-b77a-2249d1001b40.jpg)
 
-   
-  
+### Notes
+* The details of the model architecture and training process can be found in the theses [DLA-VPS](https://www.airitilibrary.com/Publication/alDetailedMesh1?DocID=U0021-NTNU40243)
