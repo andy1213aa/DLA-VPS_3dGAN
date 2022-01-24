@@ -15,7 +15,7 @@ The 3D GAN model which reconstruct Nyx simulation data from the simulation param
 ## Pipeline
 
 ### Data
-* We used the data [Nyx](https://amrex-astro.github.io/Nyx/) which devlope by Lawrence Berkeley National Laboratory. 
+* We used the data [Nyx](https://amrex-astro.github.io/Nyx/) which is devloped by Lawrence Berkeley National Laboratory. 
 * Simulaiotn Info: 
   * Input parameters: Omega_M: [0.17, 0.5] , Omega_B: [0.03, 0.08] and hubble: [0.55, 0.85].
   * Output quantities: density, temperature, rho_e, phi_grav, x-momentum, y-momentum and z-momentum. 
