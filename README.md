@@ -30,7 +30,7 @@ The 3D GAN model which reconstruct Nyx simulation data from the simulation param
   * logDir    : the directory to save the trained models (generator and discriminator)
   * epochs    : the number of the training epochs
   * batchSize : the batch size during training
-  * save_weights_only: save wieghts only or save model. 
+  * save_weights_only: save wieghts only or save model
   * save_epochs: how many epochs to save the trained model once
   
 * Step2: Run `main.py` to start the training. The trained models will be saved under the `logDir/gen` and `logDir/dis` with respective to the generator and discriminator during training. We highly recommend you to traine the models on GPU instead of CPU.
