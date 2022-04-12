@@ -20,7 +20,7 @@ The 3D GAN model which reconstruct Nyx simulation data from the simulation param
   * Input parameters: Omega_M: [0.17, 0.5] , Omega_B: [0.03, 0.08] and hubble: [0.55, 0.85].
   * Output quantities: density, temperature, rho_e, phi_grav, x-momentum, y-momentum and z-momentum. 
   * Resolution: 32^3 to 8192^3. (64^3 in our case.)
-* We save the simulation data as [TFRecord](https://www.tensorflow.org/tutorials/load_data/tfrecord) formate. Click [here](https://drive.google.com/drive/folders/13eaI8hPkA5uYo6a8gVTcz4lMGQ4hMFj5?usp=sharing) to download the folder `Nyx_tfrecords`.
+* We save the simulation data as [TFRecord](https://www.tensorflow.org/tutorials/load_data/tfrecord) formate. Click [here](https://drive.google.com/drive/folders/1vnwy9KluZtB2vxu_BWC7c06p8rdnhK1c?usp=sharing) to download the folder `Nyx_tfrecords`.
 
 ### Training
 
