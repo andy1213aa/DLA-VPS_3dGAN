@@ -46,5 +46,5 @@ The 3D GAN model which reconstruct Nyx simulation data from the simulation param
 ![residual_block](https://user-images.githubusercontent.com/59753286/150675117-8bea2bdb-5bd0-47bb-b77a-2249d1001b40.jpg)
 
 ## Notes
-* The details of the model architecture and training process can be found in the theses [DLA-VPS](https://www.airitilibrary.com/Publication/alDetailedMesh1?DocID=U0021-NTNU40243).
+* The details of the model architecture and training process can be found in the theses [DLA-VPS](https://ieeexplore.ieee.org/document/9763014).
 * Anyone is welcome to let us know how to improve in any way.
